@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "PT. Amas Iscindo Utama",
   description: "Commit To Your Needs — Indonesian Shipping Company",
-  icons: { icon: "/icon.jpg" },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
