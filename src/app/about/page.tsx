@@ -147,26 +147,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Org Chart ── */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-[#1e3a5f]">Organizational Structure</h2>
-            <div className="mt-3 w-16 h-1 bg-[#cc0000] mx-auto rounded-full" />
-          </div>
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-[800px]">
-              <Image
-                src="/images/struktur-OK-723x1024.jpg"
-                alt="PT. Amas Iscindo Utama Organizational Structure"
-                width={723}
-                height={1024}
-                className="w-full h-auto rounded-xl shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
