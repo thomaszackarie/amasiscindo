@@ -21,15 +21,37 @@ const initialForm: FormState = {
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
-    setForm(initialForm)
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        setForm(initialForm)
+      } else {
+        const data = await response.json().catch(() => ({}))
+        setError(data.error ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Network error. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -69,7 +91,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder="John Doe"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
         <div>
@@ -83,7 +105,7 @@ export default function ContactForm() {
             value={form.company}
             onChange={handleChange}
             placeholder="PT. Example Indonesia"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
       </div>
@@ -101,7 +123,7 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             placeholder="john@example.com"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
         <div>
@@ -115,7 +137,7 @@ export default function ContactForm() {
             value={form.phone}
             onChange={handleChange}
             placeholder="+62 21 xxxx xxxx"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
       </div>
@@ -132,15 +154,22 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           placeholder="Tell us how we can help you..."
-          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm [&::placeholder]:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition resize-none"
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition resize-none"
         />
       </div>
 
+      {error && (
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-[#1e3a5f] hover:bg-[#16304f] text-white font-semibold py-3 rounded-lg transition-colors duration-150"
+        disabled={isSubmitting}
+        className="w-full bg-[#1e3a5f] hover:bg-[#16304f] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-colors duration-150"
       >
-        Send Message
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   )
