@@ -69,7 +69,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder="John Doe"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
         <div>
@@ -83,7 +83,7 @@ export default function ContactForm() {
             value={form.company}
             onChange={handleChange}
             placeholder="PT. Example Indonesia"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             placeholder="john@example.com"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
         <div>
@@ -115,7 +115,7 @@ export default function ContactForm() {
             value={form.phone}
             onChange={handleChange}
             placeholder="+62 21 xxxx xxxx"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
+            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition"
           />
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           placeholder="Tell us how we can help you..."
-          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition resize-none"
+          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-sm [&::placeholder]:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:border-transparent transition resize-none"
         />
       </div>
 

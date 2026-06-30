@@ -4,30 +4,26 @@ import ContactForm from './ContactForm'
 export const metadata: Metadata = {
   title: 'Contact — PT. Amas Iscindo Utama',
   description:
-    'Get in touch with PT. Amas Iscindo Utama. Offices in Jakarta, Surabaya, and Timika.',
+    'Get in touch with PT. Amas Iscindo Utama. Head Office in Jakarta.',
 }
 
-const offices = [
+type Office = {
+  city: string
+  role: string
+  address: string
+  phones: string[]
+  fax?: string
+  email: string
+}
+
+const offices: Office[] = [
   {
     city: 'Jakarta',
     role: 'Head Office',
-    address: 'Jl. Raya Pelabuhan No. 1, Tanjung Priok\nJakarta Utara, DKI Jakarta 14310',
-    phone: '+62 21 4301 xxxx',
-    email: 'jakarta@amasiscindo.co.id',
-  },
-  {
-    city: 'Surabaya',
-    role: 'Branch Office',
-    address: 'Jl. Tanjung Perak Barat No. 25\nSurabaya, Jawa Timur 60165',
-    phone: '+62 31 3291 xxxx',
-    email: 'surabaya@amasiscindo.co.id',
-  },
-  {
-    city: 'Timika',
-    role: 'Branch Office',
-    address: 'Jl. Cenderawasih No. 8\nTimika, Papua Tengah 99910',
-    phone: '+62 901 321 xxxx',
-    email: 'timika@amasiscindo.co.id',
+    address: 'Artha Graha Building, 23rd Fl, Suite 2301\nSCBD Lot 25, Jl. Jend. Sudirman Kav. 52-53\nJakarta 12190',
+    phones: ['+62 21 515 3359', '+62 21 515 3384', '+62 21 515 3785'],
+    fax: '+62 21 515 0179',
+    email: 'crewingamas@amasiscindo.com',
   },
 ]
 
@@ -57,11 +53,11 @@ export default function ContactPage() {
             <div className="mt-3 w-16 h-1 bg-[#cc0000] mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex justify-center">
             {offices.map((office) => (
               <div
                 key={office.city}
-                className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-[#cc0000]"
+                className="bg-white rounded-xl shadow-md overflow-hidden border-t-4 border-[#cc0000] w-full max-w-md"
               >
                 {/* Card Header */}
                 <div className="bg-[#1e3a5f] px-6 py-5">
@@ -86,19 +82,38 @@ export default function ContactPage() {
                     </p>
                   </div>
 
-                  {/* Phone */}
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-[#cc0000] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {/* Phone(s) */}
+                  <div className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-[#cc0000] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <a
-                      href={`tel:${office.phone.replace(/\s/g, '')}`}
-                      className="text-gray-600 text-sm hover:text-[#1e3a5f] transition-colors"
-                    >
-                      {office.phone}
-                    </a>
+                    <div className="flex flex-col gap-1">
+                      {office.phones.map((phone) => (
+                        <a
+                          key={phone}
+                          href={`tel:${phone.replace(/\s/g, '')}`}
+                          className="text-gray-600 text-sm hover:text-[#1e3a5f] transition-colors"
+                        >
+                          {phone}
+                        </a>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Fax */}
+                  {office.fax && (
+                    <div className="flex items-center gap-3">
+                      <svg className="w-5 h-5 text-[#cc0000] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
+                          d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                      </svg>
+                      <span className="text-gray-600 text-sm">
+                        <span className="text-gray-400 text-xs font-semibold uppercase tracking-wide mr-1.5">Fax</span>
+                        {office.fax}
+                      </span>
+                    </div>
+                  )}
 
                   {/* Email */}
                   <div className="flex items-center gap-3">
