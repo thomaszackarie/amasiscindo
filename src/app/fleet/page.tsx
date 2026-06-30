@@ -4,40 +4,10 @@ import Image from 'next/image'
 export const metadata: Metadata = {
   title: 'Our Fleet — PT. Amas Iscindo Utama',
   description:
-    'Explore the fleet of PT. Amas Iscindo Utama: MV Flores Sea, MV Sawu Sea, and MV Tembaga Sea.',
+    'Explore the fleet of PT. Amas Iscindo Utama: MV Tembaga Sea.',
 }
 
 const vessels = [
-  {
-    name: 'MV Flores Sea',
-    type: 'Cargo Vessel',
-    image: '/images/Flores-1-1024x683.jpg',
-    alt: 'MV Flores Sea cargo vessel at sea',
-    tradingArea: 'Java – Nusa Tenggara – Sulawesi',
-    description:
-      'MV Flores Sea is a general cargo vessel serving the central Indonesian corridor, connecting major ports across Java, Nusa Tenggara, and Sulawesi. Built for reliability and efficiency, she is a workhorse of the AIU fleet.',
-    specs: [
-      { label: 'Vessel Type', value: 'General Cargo' },
-      { label: 'Trading Area', value: 'Java · NTT · Sulawesi' },
-      { label: 'Flag', value: 'Indonesia' },
-      { label: 'Operator', value: 'PT. Amas Iscindo Utama' },
-    ],
-  },
-  {
-    name: 'MV Sawu Sea',
-    type: 'Container Vessel',
-    image: '/images/Sawu-1-1024x683.jpg',
-    alt: 'MV Sawu Sea container vessel',
-    tradingArea: 'Surabaya – Nusa Tenggara Timur',
-    description:
-      'MV Sawu Sea operates as a container vessel on the Surabaya–NTT route, carrying containerised cargo to some of the more remote islands of eastern Indonesia. She plays a vital role in connecting these communities to national supply chains.',
-    specs: [
-      { label: 'Vessel Type', value: 'Container Vessel' },
-      { label: 'Trading Area', value: 'Surabaya · NTT' },
-      { label: 'Flag', value: 'Indonesia' },
-      { label: 'Operator', value: 'PT. Amas Iscindo Utama' },
-    ],
-  },
   {
     name: 'MV Tembaga Sea',
     type: 'Cargo Vessel',
@@ -76,7 +46,7 @@ export default function FleetPage() {
           <h1 className="text-white text-4xl sm:text-5xl font-bold">Our Fleet</h1>
           <div className="mt-4 w-16 h-1 bg-[#cc0000] mx-auto rounded-full" />
           <p className="mt-5 text-gray-300 max-w-xl mx-auto">
-            Three vessels. One mission — delivering your cargo safely and on time across
+            One mission — delivering your cargo safely and on time across
             the Indonesian archipelago.
           </p>
         </div>
@@ -85,12 +55,10 @@ export default function FleetPage() {
       {/* ── Vessel Cards ── */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          {vessels.map((vessel, index) => (
+          {vessels.map((vessel) => (
             <article
               key={vessel.name}
-              className={`bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-2 ${
-                index % 2 !== 0 ? 'lg:flex lg:flex-row-reverse' : ''
-              }`}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-2"
             >
               {/* Image */}
               <div className="relative h-72 lg:h-auto lg:min-h-[380px]">

@@ -3,18 +3,6 @@ import Link from 'next/link'
 
 const fleet = [
   {
-    name: 'MV Flores Sea',
-    type: 'Cargo Vessel',
-    image: '/images/Flores-1-1024x683.jpg',
-    alt: 'MV Flores Sea cargo vessel',
-  },
-  {
-    name: 'MV Sawu Sea',
-    type: 'Container Vessel',
-    image: '/images/Sawu-1-1024x683.jpg',
-    alt: 'MV Sawu Sea container vessel',
-  },
-  {
     name: 'MV Tembaga Sea',
     type: 'Cargo Vessel',
     image: '/images/tembaga-sea_web-1024x680.jpg',
@@ -34,13 +22,13 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section className="relative h-[90vh] min-h-[500px] flex items-center justify-center">
         <Image
-          src="/images/IMG_1a-1024x683.jpg"
-          alt="Amas Iscindo Utama shipping operations"
+          src="/images/tembaga-sea_web2-1024x712.jpg"
+          alt="MV Tembaga Sea — PT. Amas Iscindo Utama"
           fill
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#1e3a5f]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a5f]/85 via-[#1e3a5f]/70 to-[#1e3a5f]/85" />
 
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
           <p className="text-[#cc0000] uppercase tracking-[0.3em] text-sm font-semibold mb-4">
@@ -69,11 +57,11 @@ export default function HomePage() {
             <div className="mt-3 w-16 h-1 bg-[#cc0000] mx-auto rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex justify-center">
             {fleet.map((vessel) => (
               <div
                 key={vessel.name}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200 group"
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-200 group w-full max-w-md"
               >
                 <div className="relative h-56">
                   <Image
